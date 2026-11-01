@@ -1,0 +1,22 @@
+{
+  "name": "universal-ai-statusline",
+  "version": "1.0.0",
+  "description": "Unified statusline for Claude Code and Google Antigravity CLI (agy) with multi-model formatting, live prompt cache telemetry, and quota reset countdowns.",
+  "main": "statusline.js",
+  "bin": {
+    "universal-ai-statusline": "./statusline.js"
+  },
+  "keywords": [
+    "claude-code",
+    "claude",
+    "antigravity",
+    "agy",
+    "statusline",
+    "prompt-cache",
+    "rate-limits",
+    "gemini",
+    "anthropic"
+  ],
+  "author": "endymoonz",
+  "license": "MIT"
+}
