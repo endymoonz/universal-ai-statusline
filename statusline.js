@@ -103,7 +103,12 @@ process.stdin.on('end', () => {
       // than remapping `remaining_percentage` through a hardcoded compact buffer
       // that doesn't scale across context window sizes.
       const totalInput = Number(data.context_window?.total_input_tokens) || 0;
-      const ctxSize = Number(data.context_window?.context_window_size) || 0;
+      let ctxSize = Number(data.context_window?.context_window_size) || 0;
+      // Google Gemini models natively feature a 1M token context window.
+      // Claude Code defaults third-party/unknown models to 200k unless overridden.
+      if (model.base.startsWith('Gm') && ctxSize <= 200000) {
+        ctxSize = 1000000;
+      }
       const haveAbs = totalInput > 0 && ctxSize > 0;
       const used = haveAbs
         ? Math.max(0, Math.min(100, Math.round((totalInput / ctxSize) * 100)))
