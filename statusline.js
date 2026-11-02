@@ -518,9 +518,10 @@ process.stdin.on('end', () => {
       return s;
     };
     const dim = (s) => `\x1b[2m${s}\x1b[0m`;
-    const modelSeg = effortCode === 'max'
+    const indent = model.base.startsWith('Gm') ? '  ' : '';
+    const modelSeg = indent + (effortCode === 'max'
       ? `${dim(model.base)}\x1b[31m:max\x1b[0m${model.ctx ? dim(model.ctx) : ''}`
-      : dim(`${model.base}${effortCode ? `:${effortCode}` : ''}${model.ctx}`);
+      : dim(`${model.base}${effortCode ? `:${effortCode}` : ''}${model.ctx}`));
 
     // --- Output style ---
     let styleSeg = '';
